@@ -1,33 +1,39 @@
 class Solution:
     def canJump(self, nums: list[int]) -> bool:
-        print(nums)
-        print()
 
-        jumped = 0
-        start_pos = 0
-
-        while True:
-
-            if jumped >= len(nums) - 1:
+        def jump_recursively(nums, current_ind):
+            
+            if len(nums) == 1:
                 return True
 
-            if nums[jumped] == 0:
-                start_pos += 1
-                print("start pos changed")
-                jumped = start_pos
-
+            nums = nums[:current_ind] # remove items before the current index 
             
+            current_value = nums[current_ind]
+            if not current_value # if the current value is 0 then it should step back or 
+                if current_ind == 0: # if it is the first position return false
+                    return False
+                current_ind -= 1
 
-            print(nums[jumped])
-            jumped += nums[jumped]
+            current_ind += nums[current_ind] # then add value of current item to the next index we want to jump
 
-            if start_pos >= len(nums) - 1:
-                return False
-            
+
+
+
+        jump_recursively(nums, 0)
+
 
 
 solu = Solution()
-# nums = [2,5,0,0]
-# nums = [1,3, 44,44, 2, 33, 0, 44]
-nums = [3,2,1,0,4]
-print(f'\n{solu.canJump(nums)}')
+res = solu.canJump([2,3,1,1,4])
+if res:
+    print(f'\nres:\n{res}')
+
+
+
+# generators
+# iterators
+# scopes
+# list comperhesions
+# recursive functions
+# lambda
+# map() filter()
